@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "mysite.urls"
@@ -169,4 +171,20 @@ if os.getenv('ENVIRONMENT') == 'PRODUCTION':
     DATABASES = {
         "default": dj_database_url.config(
             default=os.getenv("DATABASE_URL"),
-            conn_max_age=1800), }
+            conn_max_age=1800),
+    }
+
+ALLOWED_HOSTS = ['*']
+
+SECRET_KEY = "django-insecure-w$)^+=t^blkfo@s6%)u1xoa7iap$&9vbpq+7!7z+hxu95e+73l"
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    'https://njr-max-maxharper26s-projects.vercel.app',
+    'https://www.njrpartners.com',
+    'https://njr-blog-production.up.railway.app'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://njr-blog-production.up.railway.app',
+]
