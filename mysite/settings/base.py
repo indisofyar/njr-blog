@@ -196,4 +196,5 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://njr-blog-production.up.railway.app',
+    'https://njr-blog-staging.up.railway.app'
 ]
