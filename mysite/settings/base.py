@@ -174,6 +174,12 @@ if os.getenv('ENVIRONMENT') == 'PRODUCTION':
             conn_max_age=1800),
     }
 
+DATABASES = {
+    "default": dj_database_url.config(
+        default='postgresql://postgres:MWouguxrBVSzUXTaBKKAqgfgIpQXsNJv@autorack.proxy.rlwy.net:20761/railway',
+        conn_max_age=1800),
+}
+
 ALLOWED_HOSTS = ['*']
 
 SECRET_KEY = "django-insecure-w$)^+=t^blkfo@s6%)u1xoa7iap$&9vbpq+7!7z+hxu95e+73l"
