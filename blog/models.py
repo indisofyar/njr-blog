@@ -6,6 +6,7 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
 from wagtail.api import APIField
+from wagtail.images.api.fields import ImageRenditionField
 from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
@@ -69,14 +70,17 @@ class BlogPage(Page):
     def main_image(self):
         gallery_item = self.gallery_images.first()
         if gallery_item:
-            return gallery_item.image
+            rendition = gallery_item.image.get_rendition('fill-400x300')  # Adjust spec as needed
+            return rendition.url
         else:
             return None
 
     api_fields = [
         APIField("intro"),
         APIField("body"),
-        APIField('date')
+        APIField('date'),
+        APIField('main_image'),  # Add this line
+        # Add this line
     ]
 
     search_fields = Page.search_fields + [
