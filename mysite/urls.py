@@ -9,13 +9,14 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 
 from mysite.api import api_router
+from blog.urls import urlpatterns as blog_urls
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
-
+    path("api/blog/", include(blog_urls)),
 ]
 
 
