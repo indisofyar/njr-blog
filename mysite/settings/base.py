@@ -166,22 +166,23 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = "https://njr-blog-production.up.railway.app/"
+WAGTAILADMIN_BASE_URL = "https://njr-blog-production.up.railway.app"
+
+
+staging_db = 'postgresql://postgres:vzcfGmEOxmanRDpJpdeSfoiCtqcvgOFx@autorack.proxy.rlwy.net:23987/railway'
+prod_db = 'postgresql://postgres:FjXbbjmPFSOuLRvMUTBUJPUkmWJxaCPp@autorack.proxy.rlwy.net:51958/railway'
 
 # Production settings
 if os.getenv('ENVIRONMENT') == 'PRODUCTION':
     # Use postgres DB
     DATABASES = {
         "default": dj_database_url.config(
-            default=os.getenv("DATABASE_URL"),
+            default=prod_db,
             conn_max_age=1800),
     }
 
-DATABASES = {
-    "default": dj_database_url.config(
-        default='postgresql://postgres:MWouguxrBVSzUXTaBKKAqgfgIpQXsNJv@autorack.proxy.rlwy.net:20761/railway',
-        conn_max_age=1800),
-}
+
+
 
 ALLOWED_HOSTS = ['*']
 
